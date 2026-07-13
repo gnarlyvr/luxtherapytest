@@ -29,7 +29,7 @@ export function PageHero({
         sizes="100vw"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(250,248,241,0.9)] via-[rgba(250,248,241,0.78)] to-[rgba(250,248,241,0.95)]" />
-      <SoftBackdrop showBird birdClassName="right-4 top-8 h-28 w-36 sm:right-10 sm:top-12 sm:h-36 sm:w-44" />
+      <SoftBackdrop />
       <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         {eyebrow && (
           <p className="animate-fade-up inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-lux-ink-muted">

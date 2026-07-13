@@ -1,12 +1,10 @@
 import Link from "next/link";
-import { HummingbirdMark } from "@/components/HummingbirdMark";
 import { Logo } from "@/components/Logo";
 import { navLinks, practiceInfo } from "@/data/site";
 
 export function Footer() {
   return (
     <footer className="relative mt-auto overflow-hidden border-t border-lux-border bg-lux-moss-deep text-lux-foam">
-      <HummingbirdMark className="pointer-events-none absolute -right-4 bottom-8 h-40 w-52 text-white/10 sm:right-8" />
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-3 lg:px-8">
         <div>
           <Logo variant="light" className="h-12" width={180} height={54} />

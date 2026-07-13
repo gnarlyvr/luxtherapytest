@@ -12,7 +12,6 @@ export default function HomePage() {
     <>
       <section className="hero-plane relative min-h-[min(92vh,820px)] w-full overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(250,248,241,0.16),transparent_42%)]" />
-        <HummingbirdMark className="animate-hum pointer-events-none absolute right-[6%] top-[18%] h-24 w-32 text-white/25 sm:h-32 sm:w-40 lg:h-40 lg:w-52" />
         <div className="relative mx-auto flex min-h-[min(92vh,820px)] max-w-6xl flex-col justify-end px-4 pb-16 pt-28 sm:px-6 sm:pb-20 lg:justify-center lg:px-8 lg:pb-24">
           <div className="animate-leaf">
             <Logo
@@ -43,7 +42,7 @@ export default function HomePage() {
       </section>
 
       <section className="relative overflow-hidden">
-        <SoftBackdrop showBird birdClassName="-left-6 bottom-4 h-36 w-44 rotate-[-12deg]" />
+        <SoftBackdrop />
         <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-20">
           <blockquote className="max-w-xl border-l-4 border-lux-sage pl-6">
             <p className="font-display text-2xl text-lux-moss-deep sm:text-3xl">
@@ -55,7 +54,7 @@ export default function HomePage() {
           </blockquote>
           <div className="relative aspect-[5/4] overflow-hidden rounded-2xl shadow-sm">
             <Image
-              src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=1200&q=80"
+              src="https://images.unsplash.com/photo-1520638023360-6def43369781?auto=format&fit=crop&w=1200&q=80"
               alt="A hummingbird hovering near soft blossoms"
               fill
               className="object-cover"
@@ -164,7 +163,7 @@ export default function HomePage() {
       </section>
 
       <section className="calm-band relative overflow-hidden">
-        <SoftBackdrop showBird birdClassName="right-8 top-10 h-28 w-36" />
+        <SoftBackdrop />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:py-24">
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-lux-ink-muted">
