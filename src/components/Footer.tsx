@@ -1,15 +1,19 @@
 import Link from "next/link";
+import { HummingbirdMark } from "@/components/HummingbirdMark";
+import { Logo } from "@/components/Logo";
 import { navLinks, practiceInfo } from "@/data/site";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-lux-border bg-lux-moss-deep text-lux-foam">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-3 lg:px-8">
+    <footer className="relative mt-auto overflow-hidden border-t border-lux-border bg-lux-moss-deep text-lux-foam">
+      <HummingbirdMark className="pointer-events-none absolute -right-4 bottom-8 h-40 w-52 text-white/10 sm:right-8" />
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-3 lg:px-8">
         <div>
-          <p className="font-display text-3xl tracking-tight text-white">Lux Therapy</p>
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-lux-mist">
-            A group practice offering warm, evidence-based mental health care for
-            individuals, couples, and families.
+          <Logo variant="light" className="h-12" width={180} height={54} />
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-lux-mist">
+            {practiceInfo.tagline} Compassionate counseling for young adults,
+            couples, and families—primarily virtual, with a Massachusetts office
+            for in-person sessions.
           </p>
           <p className="mt-4 text-sm text-lux-mist">{practiceInfo.telehealthNote}</p>
         </div>
@@ -34,7 +38,7 @@ export function Footer() {
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-white">
-            Practice Hours
+            Get in touch
           </h2>
           <ul className="mt-4 space-y-2 text-sm text-lux-mist">
             {practiceInfo.hours.map((item) => (
@@ -69,7 +73,7 @@ export function Footer() {
             website is not monitored for crisis communication.
           </p>
           <p className="shrink-0">
-            © {new Date().getFullYear()} Lux Therapy. All rights reserved.
+            © {new Date().getFullYear()} {practiceInfo.name}. All rights reserved.
           </p>
         </div>
       </div>

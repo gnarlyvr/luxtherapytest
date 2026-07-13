@@ -1,10 +1,71 @@
 "use client";
 
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 import { useMemo, useState } from "react";
-import { allSpecialties, therapists } from "@/data/therapists";
+import { allSpecialties, therapists, type Therapist } from "@/data/therapists";
 
 type FormatFilter = "All" | "In-person" | "Virtual";
+
+function TherapistCard({ therapist }: { therapist: Therapist }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <article className="animate-soft-rise overflow-hidden rounded-lg border border-lux-border bg-white">
+      <div className="relative aspect-[4/3] bg-lux-mist">
+        <Image
+          src={therapist.image}
+          alt={`Portrait of ${therapist.name}`}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </div>
+      <div className="p-6">
+        <h2 className="font-display text-2xl text-lux-moss-deep">
+          {therapist.name}, {therapist.credentials}
+        </h2>
+        <p className="mt-1 text-sm font-medium text-lux-ink-muted">{therapist.role}</p>
+
+        {!expanded ? (
+          <p className="mt-4 text-sm leading-relaxed text-lux-ink-muted">
+            {therapist.statement}
+          </p>
+        ) : (
+          <div className="mt-4 space-y-3 text-sm leading-relaxed text-lux-ink-muted">
+            {therapist.bio.map((paragraph) => (
+              <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+            ))}
+          </div>
+        )}
+
+        <button
+          type="button"
+          className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-lux-moss transition-colors hover:text-lux-moss-deep"
+          aria-expanded={expanded}
+          onClick={() => setExpanded((value) => !value)}
+        >
+          {expanded ? "Show less" : "Read full bio"}
+          <ChevronDown
+            size={16}
+            className={`transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {therapist.specializations.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-md bg-lux-foam px-2.5 py-1 text-xs font-medium text-lux-moss-deep"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export function TherapistDirectory() {
   const [specialty, setSpecialty] = useState("All");
@@ -51,9 +112,9 @@ export function TherapistDirectory() {
             onChange={(e) => setFormat(e.target.value as FormatFilter)}
             className="mt-2 w-full rounded-md border border-lux-border bg-lux-paper px-3 py-2.5 text-lux-ink outline-none transition focus:border-lux-sage focus:ring-2 focus:ring-lux-mist"
           >
-            <option value="All">In-person &amp; Virtual</option>
-            <option value="In-person">In-person</option>
+            <option value="All">Virtual &amp; In-person (MA)</option>
             <option value="Virtual">Virtual</option>
+            <option value="In-person">In-person (MA office)</option>
           </select>
         </div>
       </div>
@@ -64,42 +125,7 @@ export function TherapistDirectory() {
 
       <div className="mt-6 grid gap-8 md:grid-cols-2">
         {filtered.map((therapist) => (
-          <article
-            key={therapist.id}
-            className="animate-soft-rise overflow-hidden rounded-lg border border-lux-border bg-white"
-          >
-            <div className="relative aspect-[4/3] bg-lux-mist">
-              <Image
-                src={therapist.image}
-                alt={`Portrait of ${therapist.name}`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div className="p-6">
-              <h2 className="font-display text-2xl text-lux-moss-deep">
-                {therapist.name}, {therapist.credentials}
-              </h2>
-              <p className="mt-1 text-sm font-medium text-lux-sage">{therapist.role}</p>
-              <p className="mt-4 text-sm leading-relaxed text-lux-ink-muted">
-                {therapist.statement}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {therapist.specializations.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-md bg-lux-foam px-2.5 py-1 text-xs font-medium text-lux-moss-deep"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-lux-ink-muted">
-                {therapist.formats.join(" · ")}
-              </p>
-            </div>
-          </article>
+          <TherapistCard key={therapist.id} therapist={therapist} />
         ))}
       </div>
 

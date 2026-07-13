@@ -7,7 +7,7 @@ import { services } from "@/data/services";
 export const metadata: Metadata = {
   title: "Our Services",
   description:
-    "Explore Lux Therapy services including individual therapy, couples counseling, family therapy, group workshops, and telehealth options in Oregon.",
+    "Explore New Aviv services including individual therapy, couples and marriage counseling, family counseling, teen counseling, and group programs.",
 };
 
 const icons = {
@@ -24,7 +24,8 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Our Services"
         title="Clinical care shaped around how you live and heal"
-        description="From one-on-one therapy to couples, family, and group support—choose the format that meets you where you are, in person or by secure video."
+        description="From one-on-one therapy to couples, family, and group support—primarily through secure virtual appointments, with in-person sessions available at our Massachusetts office."
+        backdropImage="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1800&q=70"
       />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">

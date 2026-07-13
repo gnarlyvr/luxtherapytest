@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Outfit } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { practiceInfo } from "@/data/site";
 import "./globals.css";
 
 const display = Fraunces({
@@ -16,19 +17,19 @@ const body = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://luxtherapy.example.com"),
+  metadataBase: new URL("https://www.newaviv.com"),
   title: {
-    default: "Lux Therapy | Compassionate Group Therapy Practice",
-    template: "%s | Lux Therapy",
+    default: "New Aviv | Hope, Care, and Healing",
+    template: "%s | New Aviv",
   },
   description:
-    "Lux Therapy offers warm, evidence-based mental health care for individuals, couples, and families in Portland and across Oregon via telehealth.",
+    "New Aviv offers compassionate counseling for young adults, couples, and families—primarily virtual, with in-person appointments available at our Somerville, Massachusetts office.",
   openGraph: {
-    title: "Lux Therapy",
-    description:
-      "Compassionate, inclusive therapy for healing and growth. Schedule a consultation today.",
+    title: "New Aviv",
+    description: practiceInfo.quote,
     type: "website",
     locale: "en_US",
+    url: "https://www.newaviv.com",
   },
 };
 

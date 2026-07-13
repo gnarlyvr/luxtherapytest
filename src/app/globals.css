@@ -1,37 +1,36 @@
 @import "tailwindcss";
 
 /*
-  Brand palette
-  Icy Blue           #ADD7F6
-  Baby Blue Ice      #87BFFF
-  Blue Energy        #3F8EFC
-  Electric Sapphire  #2667FF
-  Ultrasonic Blue    #3B28CC
+  The Grounded Haven
+  Warm Linen           #FAF8F1  — main background
+  Charcoal Earth       #4A3728  — primary text / headers
+  Sage Leaf            #C8E6C9  — supporting accents
+  Dusty Terracotta     #D69E7C  — CTAs / buttons
 */
 
 :root {
-  --lux-icy: #add7f6;
-  --lux-baby: #87bfff;
-  --lux-energy: #3f8efc;
-  --lux-sapphire: #2667ff;
-  --lux-ultrasonic: #3b28cc;
+  --lux-linen: #faf8f1;
+  --lux-charcoal: #4a3728;
+  --lux-sage-leaf: #c8e6c9;
+  --lux-terracotta: #d69e7c;
+  --lux-terracotta-deep: #c08460;
 
-  --lux-ink: #1a1654;
-  --lux-ink-muted: #4a568c;
-  --lux-moss: var(--lux-sapphire);
-  --lux-moss-deep: var(--lux-ultrasonic);
-  --lux-sage: var(--lux-energy);
-  --lux-foam: #eaf4fc;
-  --lux-mist: var(--lux-icy);
-  --lux-sky: var(--lux-baby);
-  --lux-paper: #f5f9fd;
-  --lux-accent: var(--lux-sapphire);
-  --lux-accent-hover: var(--lux-ultrasonic);
-  --lux-border: #b7d3ec;
+  --lux-ink: var(--lux-charcoal);
+  --lux-ink-muted: #6b5344;
+  --lux-moss: var(--lux-charcoal);
+  --lux-moss-deep: var(--lux-charcoal);
+  --lux-sage: var(--lux-sage-leaf);
+  --lux-foam: #f3f0e6;
+  --lux-mist: var(--lux-sage-leaf);
+  --lux-sky: #e4f3e5;
+  --lux-paper: var(--lux-linen);
+  --lux-accent: var(--lux-terracotta);
+  --lux-accent-hover: var(--lux-terracotta-deep);
+  --lux-border: #b7d4b8;
   --lux-warning: #7a3e2e;
   --lux-warning-bg: #f8ebe7;
-  --background: var(--lux-paper);
-  --foreground: var(--lux-ink);
+  --background: var(--lux-linen);
+  --foreground: var(--lux-charcoal);
 }
 
 @theme inline {
@@ -66,8 +65,8 @@ body {
 }
 
 ::selection {
-  background: var(--lux-icy);
-  color: var(--lux-ink);
+  background: var(--lux-sage-leaf);
+  color: var(--lux-charcoal);
 }
 
 .font-display {
@@ -75,21 +74,36 @@ body {
 }
 
 .site-atmosphere {
-  background:
-    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(173, 215, 246, 0.65), transparent 55%),
-    radial-gradient(ellipse 70% 45% at 90% 10%, rgba(135, 191, 255, 0.45), transparent 50%),
-    linear-gradient(180deg, #f5f9fd 0%, #eaf4fc 42%, #f0f7fc 100%);
+  background: #faf8f1;
+}
+
+.soft-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: soft-light;
 }
 
 .hero-plane {
   background:
     linear-gradient(
-      105deg,
-      rgba(59, 40, 204, 0.78) 0%,
-      rgba(38, 103, 255, 0.58) 45%,
-      rgba(63, 142, 252, 0.28) 100%
+      115deg,
+      rgba(74, 55, 40, 0.72) 0%,
+      rgba(74, 55, 40, 0.45) 48%,
+      rgba(214, 158, 124, 0.28) 100%
     ),
-    url("https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=2000&q=80")
+    url("https://images.unsplash.com/photo-1465146633011-14f8e0781093?auto=format&fit=crop&w=2200&q=80")
+      center / cover no-repeat;
+}
+
+.calm-band {
+  background:
+    linear-gradient(
+      100deg,
+      rgba(250, 248, 241, 0.88) 0%,
+      rgba(250, 248, 241, 0.7) 50%,
+      rgba(243, 240, 230, 0.55) 100%
+    ),
+    url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=70")
       center / cover no-repeat;
 }
 
@@ -125,6 +139,16 @@ body {
   }
 }
 
+@keyframes hum-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-4deg);
+  }
+  50% {
+    transform: translate3d(8px, -10px, 0) rotate(3deg);
+  }
+}
+
 .animate-fade-up {
   animation: fade-up 0.8s ease-out both;
 }
@@ -145,6 +169,10 @@ body {
   animation: leaf-drift 5s ease-in-out infinite;
 }
 
+.animate-hum {
+  animation: hum-drift 7s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -154,9 +182,16 @@ body {
   .animate-fade-up-delay,
   .animate-fade-up-delay-2,
   .animate-soft-rise,
-  .animate-leaf {
+  .animate-leaf,
+  .animate-hum {
     animation: none;
   }
+}
+
+.logo-on-light {
+  /* White logo → Charcoal Earth (#4A3728) instead of pure black */
+  filter: brightness(0) saturate(100%) invert(22%) sepia(24%) saturate(752%)
+    hue-rotate(346deg) brightness(93%) contrast(88%);
 }
 
 .prose-lux p + p {

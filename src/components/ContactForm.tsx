@@ -4,10 +4,17 @@ import { FormEvent, useState } from "react";
 
 const careTypes = [
   "Individual Therapy",
-  "Couples / Marriage Counseling",
-  "Family Therapy",
-  "Group Therapy Workshops",
+  "Couples Therapy and Marriage Counseling",
+  "Family Counseling",
+  "Teen Counseling",
+  "Group Counseling",
   "Not sure yet",
+];
+
+const appointmentFormats = [
+  "Virtual (preferred)",
+  "In-person at Massachusetts office",
+  "No preference / not sure",
 ];
 
 export function ContactForm() {
@@ -126,6 +133,25 @@ export function ContactForm() {
       </div>
 
       <div>
+        <label htmlFor="format" className="block text-sm font-semibold text-lux-ink">
+          Preferred appointment format
+        </label>
+        <select
+          id="format"
+          name="format"
+          required
+          defaultValue="Virtual (preferred)"
+          className="mt-2 w-full rounded-md border border-lux-border bg-lux-paper px-3 py-2.5 text-lux-ink outline-none transition focus:border-lux-sage focus:ring-2 focus:ring-lux-mist"
+        >
+          {appointmentFormats.map((format) => (
+            <option key={format} value={format}>
+              {format}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
         <label htmlFor="message" className="block text-sm font-semibold text-lux-ink">
           How can we help?
         </label>
@@ -139,7 +165,7 @@ export function ContactForm() {
       </div>
 
       <p className="text-xs leading-relaxed text-lux-ink-muted">
-        By submitting, you agree that Lux Therapy may contact you about scheduling.
+        By submitting, you agree that New Aviv may contact you about scheduling.
         This form is not encrypted for clinical documentation and should not include
         sensitive medical details beyond what you are comfortable sharing. See our
         privacy practices for how we handle inquiry information.
@@ -147,7 +173,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="w-full rounded-md bg-lux-accent px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-accent-hover hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lux-moss sm:w-auto"
+        className="w-full rounded-md bg-lux-accent px-5 py-3 text-sm font-semibold text-lux-paper transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-accent-hover hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lux-moss sm:w-auto"
       >
         Send message
       </button>

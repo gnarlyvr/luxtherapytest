@@ -8,22 +8,25 @@ export const navLinks = [
 ] as const;
 
 export const practiceInfo = {
-  name: "Lux Therapy",
-  tagline: "Compassionate care for every chapter of healing",
-  phone: "(555) 014-2280",
-  email: "hello@luxtherapy.com",
-  fax: "(555) 014-2281",
-  careersEmail: "careers@luxtherapy.com",
+  name: "New Aviv",
+  tagline: "Hope. Care. Healing.",
+  quote: "Where flowers bloom so does hope.",
+  quoteAttribution: "Lady Bird Johnson",
+  phone: "(857) 284-8639",
+  email: "contact@newaviv.com",
+  fax: "",
+  careersEmail: "contact@newaviv.com",
+  website: "https://www.newaviv.com",
   address: {
-    line1: "1847 Willow Creek Avenue, Suite 210",
-    line2: "Portland, OR 97205",
+    line1: "240 Elm St, Floor 2",
+    line2: "Somerville, Massachusetts 27713",
   },
   hours: [
-    { day: "Monday – Thursday", time: "8:00 AM – 7:00 PM" },
-    { day: "Friday", time: "8:00 AM – 5:00 PM" },
-    { day: "Saturday", time: "9:00 AM – 1:00 PM (select clinicians)" },
-    { day: "Sunday", time: "Closed" },
+    { day: "Virtual appointments", time: "Primary option" },
+    { day: "In-person (Somerville)", time: "By appointment" },
   ],
   telehealthNote:
-    "In-person sessions available at our Portland office. Secure telehealth offered throughout Oregon.",
+    "Most appointments are virtual. In-person sessions are available at our Somerville, Massachusetts office when that format is a better fit.",
+  virtualPrimaryNote:
+    "Virtual care is our primary format. In-person appointments can be scheduled at our office in Somerville, Massachusetts.",
 };

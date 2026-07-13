@@ -6,7 +6,7 @@ import { TherapistDirectory } from "@/components/TherapistDirectory";
 export const metadata: Metadata = {
   title: "Meet our Therapists",
   description:
-    "Meet the Lux Therapy clinicians. Filter by specialty or in-person vs. virtual care to find the right therapeutic match.",
+    "Meet the New Aviv clinicians. With over 20 years of combined experience, our therapists are ready to address challenges the way you want to address them.",
 };
 
 export default function TherapistsPage() {
@@ -15,7 +15,8 @@ export default function TherapistsPage() {
       <PageHero
         eyebrow="Meet our Therapists"
         title="Thoughtful clinicians. Real human connection."
-        description="Every therapist at Lux brings specialized training and a warm presence. Use the filters below to explore specialties and session formats."
+        description="With over 20 years of combined experience, our therapists are ready to address challenges the way you want to address them. Most sessions are virtual; in-person care is available at our Massachusetts office."
+        backdropImage="https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1800&q=70"
       />
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">

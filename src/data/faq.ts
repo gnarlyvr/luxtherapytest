@@ -1,27 +1,32 @@
 export const faqs = [
   {
-    question: "Do you take insurance?",
+    question: "Are appointments virtual or in person?",
     answer:
-      "Yes. We are in-network with several major carriers and can also provide superbills for out-of-network reimbursement. Our team will verify benefits before your first session whenever possible.",
+      "Most New Aviv appointments are virtual. We can also offer in-person sessions at our Somerville, Massachusetts office when that format is a better fit. Reach out and we will help you choose the right option.",
   },
   {
-    question: "What is your cancellation policy?",
+    question: "Where is your office?",
     answer:
-      "Please provide at least 24 hours' notice to cancel or reschedule. Late cancellations and missed appointments may be subject to a fee, which we'll review clearly during intake.",
+      "Our office is at 240 Elm St, Floor 2, Somerville, Massachusetts 27713. Most clients meet virtually; in-person appointments can be scheduled at this location.",
   },
   {
-    question: "How long are sessions?",
+    question: "Do you work with couples and families?",
     answer:
-      "Individual sessions are typically 50 minutes. Couples and family sessions are often 50–80 minutes depending on clinical need and clinician availability.",
+      "Yes. In addition to individual therapy, our clinicians specialize in family, couples, and marriage counseling, as well as teen counseling and group programs.",
   },
   {
-    question: "Is telehealth available?",
+    question: "What is your approach to care?",
     answer:
-      "Yes. Secure video sessions are available to Oregon residents. Many clinicians also offer hybrid care if you prefer mixing in-person and virtual appointments.",
+      "At New Aviv we collaborate with you to identify your goals in a safe, comfortable space. We are compassionate and accepting of the challenges you may be facing and tailor counseling sessions to best suit your needs. Together, we develop hope.",
   },
   {
-    question: "What should I expect at my first appointment?",
+    question: "How do I get started?",
     answer:
-      "Your first visit focuses on understanding your goals, history, and what support would feel most helpful. We'll discuss fit, recommendations, and next steps together—no pressure to commit beyond that conversation.",
+      "Call us at (857) 284-8639 or use the contact form on this page. We can discuss a brief consultation to see if we are a good fit for your goals and expectations.",
+  },
+  {
+    question: "What if I am in crisis?",
+    answer:
+      "If you are experiencing a medical emergency, contact 911 or your local emergency services immediately. For suicide or mental health crisis support, call or text 988. Our contact form is not monitored for urgent situations.",
   },
 ];

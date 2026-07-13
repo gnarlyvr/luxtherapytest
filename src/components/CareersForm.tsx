@@ -99,7 +99,7 @@ export function CareersForm() {
       </p>
       <button
         type="submit"
-        className="rounded-md bg-lux-accent px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-accent-hover hover:shadow-md"
+        className="rounded-md bg-lux-accent px-5 py-3 text-sm font-semibold text-lux-paper transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-accent-hover hover:shadow-md"
       >
         Submit application
       </button>

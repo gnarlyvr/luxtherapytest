@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { navLinks } from "@/data/site";
+import { Logo } from "@/components/Logo";
+import { navLinks, practiceInfo } from "@/data/site";
 
 export function Header() {
   const pathname = usePathname();
@@ -26,10 +27,10 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="font-display text-2xl tracking-tight text-lux-moss-deep transition-colors hover:text-lux-moss"
-          aria-label="Lux Therapy home"
+          className="flex items-center gap-2 transition-opacity hover:opacity-90"
+          aria-label={`${practiceInfo.name} home`}
         >
-          Lux Therapy
+          <Logo variant="dark" className="h-10 sm:h-12" priority />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
@@ -54,7 +55,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <Link
             href="/contact"
-            className="hidden rounded-md bg-lux-accent px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-accent-hover hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lux-moss sm:inline-flex"
+            className="hidden rounded-md bg-lux-accent px-4 py-2.5 text-sm font-semibold text-lux-paper shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-accent-hover hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lux-moss sm:inline-flex"
           >
             Schedule a Consultation
           </Link>
@@ -96,7 +97,7 @@ export function Header() {
             })}
             <Link
               href="/contact"
-              className="mt-2 rounded-md bg-lux-accent px-3 py-3 text-center text-base font-semibold text-white transition-colors hover:bg-lux-accent-hover"
+              className="mt-2 rounded-md bg-lux-accent px-3 py-3 text-center text-base font-semibold text-lux-paper transition-colors hover:bg-lux-accent-hover"
             >
               Schedule a Consultation
             </Link>

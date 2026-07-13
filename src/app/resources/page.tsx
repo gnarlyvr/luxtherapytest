@@ -1,68 +1,75 @@
 import type { Metadata } from "next";
-import { BookOpen, Download, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Resources",
   description:
-    "Mental health resources from Lux Therapy—including crisis hotlines, recommended reading, intake form downloads, and newsletter insights.",
+    "Crisis and community support resources from New Aviv, including the 988 Suicide & Crisis Lifeline and other national hotlines.",
 };
 
-const readings = [
-  {
-    title: "The Body Keeps the Score",
-    author: "Bessel van der Kolk",
-    note: "A foundational look at trauma and pathways to recovery.",
-  },
-  {
-    title: "Attached",
-    author: "Amir Levine & Rachel Heller",
-    note: "Accessible guidance on attachment styles in relationships.",
-  },
-  {
-    title: "Self-Compassion",
-    author: "Kristin Neff",
-    note: "Practical tools for relating to yourself with more kindness.",
-  },
-  {
-    title: "Hold Me Tight",
-    author: "Sue Johnson",
-    note: "Emotionally focused insights for couples seeking connection.",
-  },
-];
-
 const hotlines = [
-  { name: "988 Suicide & Crisis Lifeline", detail: "Call or text 988 (24/7)" },
-  { name: "Crisis Text Line", detail: "Text HOME to 741741" },
-  {
-    name: "Trevor Project (LGBTQ+ youth)",
-    detail: "1-866-488-7386 or text START to 678678",
-  },
+  { name: "Suicide & Crisis Lifeline", detail: "Call or text 988" },
   {
     name: "National Domestic Violence Hotline",
     detail: "1-800-799-7233",
   },
-];
-
-const articles = [
   {
-    title: "How to know when it's time to start therapy",
-    excerpt:
-      "A gentle guide to recognizing readiness—and what the first few sessions often look like.",
-    status: "Coming soon",
+    name: "National Hopeline Network",
+    detail: "1-800-SUICIDE (800-784-2433)",
   },
   {
-    title: "Telehealth tips for a more grounded session",
-    excerpt:
-      "Small environment shifts that help remote therapy feel private, focused, and effective.",
-    status: "Coming soon",
+    name: "National Sexual Assault Hotline",
+    detail: "1-800-656-4673",
   },
   {
-    title: "Supporting a partner who's struggling",
-    excerpt:
-      "Ways to show up with care without taking on the role of therapist yourself.",
-    status: "Coming soon",
+    name: "Crisis Text Line",
+    detail: 'Text “DESERVE” to 741-741',
+  },
+  {
+    name: "Lifeline Crisis Chat",
+    detail: "https://suicidepreventionlifeline.org/chat/",
+  },
+  {
+    name: "Self-Harm Hotline",
+    detail: "1-800-DONT CUT (1-800-366-8288)",
+  },
+  {
+    name: "Essential local and community services",
+    detail: "211 · https://www.211.org/",
+  },
+  {
+    name: "Planned Parenthood Hotline",
+    detail: "1-800-230-PLAN (7526)",
+  },
+  {
+    name: "American Association of Poison Control Centers",
+    detail: "1-800-222-1222",
+  },
+  {
+    name: "National Council on Alcoholism & Drug Dependency Hope Line",
+    detail: "1-800-622-2255",
+  },
+  {
+    name: "National Crisis Line – Anorexia and Bulimia",
+    detail: "1-800-233-4357",
+  },
+  {
+    name: "LGBTQ National Help Center",
+    detail: "1-888-843-4564",
+  },
+  {
+    name: "TREVOR Crisis Hotline",
+    detail: "1-866-488-7386",
+  },
+  {
+    name: "AIDS Crisis Line",
+    detail: "1-800-221-7044",
+  },
+  {
+    name: "Veterans Crisis Line",
+    detail: "https://www.veteranscrisisline.net",
   },
 ];
 
@@ -71,123 +78,36 @@ export default function ResourcesPage() {
     <>
       <PageHero
         eyebrow="Resources"
-        title="Support you can use today—and insights for the road ahead"
-        description="Psychoeducational materials, crisis contacts, and intake downloads to help you take the next step with clarity."
+        title="Support when you need it most"
+        description="If you are experiencing a medical emergency, contact 911 or your local emergency services immediately. Helpful affiliated resources are listed below."
+        backdropImage="https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1800&q=70"
       />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 text-lux-sage">
-              <BookOpen size={22} />
-              <h2 className="font-display text-3xl text-lux-moss-deep">
-                Recommended reading
-              </h2>
-            </div>
-            <ul className="mt-8 space-y-6">
-              {readings.map((book) => (
-                <li key={book.title} className="border-b border-lux-border pb-6">
-                  <p className="font-semibold text-lux-ink">{book.title}</p>
-                  <p className="text-sm text-lux-sage">{book.author}</p>
-                  <p className="mt-2 text-sm text-lux-ink-muted">{book.note}</p>
-                </li>
-              ))}
-            </ul>
+        <div className="rounded-lg border border-lux-warning/30 bg-lux-warning-bg p-6 sm:p-8">
+          <div className="flex items-center gap-2 text-lux-warning">
+            <Phone size={20} />
+            <h2 className="font-semibold">Crisis &amp; community resources</h2>
           </div>
-
-          <aside className="space-y-8">
-            <div className="rounded-lg border border-lux-warning/30 bg-lux-warning-bg p-6">
-              <div className="flex items-center gap-2 text-lux-warning">
-                <Phone size={20} />
-                <h2 className="font-semibold">Crisis hotlines</h2>
-              </div>
-              <ul className="mt-4 space-y-4 text-sm">
-                {hotlines.map((line) => (
-                  <li key={line.name}>
-                    <p className="font-semibold text-lux-ink">{line.name}</p>
-                    <p className="text-lux-ink-muted">{line.detail}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="rounded-lg border border-lux-border bg-white p-6">
-              <div className="flex items-center gap-2 text-lux-sage">
-                <Download size={20} />
-                <h2 className="font-semibold text-lux-ink">Intake forms</h2>
-              </div>
-              <p className="mt-3 text-sm text-lux-ink-muted">
-                Download placeholders for new-client paperwork. Your clinician
-                will confirm which forms apply after scheduling.
-              </p>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li>
-                  <a
-                    href="#"
-                    className="font-medium text-lux-moss underline-offset-2 hover:underline"
-                  >
-                    Adult Intake Packet (PDF)
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="font-medium text-lux-moss underline-offset-2 hover:underline"
-                  >
-                    Telehealth Consent (PDF)
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="font-medium text-lux-moss underline-offset-2 hover:underline"
-                  >
-                    Release of Information (PDF)
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section className="border-y border-lux-border bg-white/70">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl text-lux-moss-deep">
-            Insights &amp; articles
-          </h2>
-          <p className="mt-3 max-w-2xl text-lux-ink-muted">
-            A placeholder for our growing library of psychoeducational posts.
-          </p>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {articles.map((article) => (
-              <article
-                key={article.title}
-                className="rounded-lg border border-lux-border bg-lux-paper p-6"
-              >
-                <p className="text-xs font-semibold uppercase tracking-wide text-lux-sage">
-                  {article.status}
-                </p>
-                <h3 className="mt-2 font-display text-xl text-lux-moss-deep">
-                  {article.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-lux-ink-muted">
-                  {article.excerpt}
-                </p>
-              </article>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+            {hotlines.map((line) => (
+              <li key={line.name}>
+                <p className="font-semibold text-lux-ink">{line.name}</p>
+                <p className="text-sm text-lux-ink-muted">{line.detail}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
       <section className="bg-lux-moss-deep">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl text-white sm:text-4xl">
-            Get mental health insights delivered to your inbox
+            Stay connected with New Aviv
           </h2>
           <p className="mt-4 max-w-xl text-lux-mist">
-            Occasional notes on coping skills, relationships, and navigating
-            care—never spam, always opt-out friendly.
+            Occasional insights on healing, relationships, and finding hope—never
+            spam, always easy to unsubscribe.
           </p>
           <div className="mt-8">
             <NewsletterForm />

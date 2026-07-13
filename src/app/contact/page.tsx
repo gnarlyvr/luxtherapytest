@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, Phone, Printer } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { PageHero } from "@/components/PageHero";
@@ -8,7 +8,7 @@ import { practiceInfo } from "@/data/site";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Contact Lux Therapy to schedule a consultation. Find our Portland address, phone, email, FAQ, and secure inquiry form.",
+    "Contact New Aviv at (857) 284-8639 to schedule a consultation. Primarily virtual care, with in-person appointments at 240 Elm St, Somerville, Massachusetts.",
 };
 
 export default function ContactPage() {
@@ -16,16 +16,17 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact Us"
-        title="Let's begin with a conversation"
-        description="Share a little about what you're looking for and our team will follow up within 1–2 business days to discuss next steps."
+        title="Take the next step toward hope"
+        description="Share a little about what you’re looking for and our team will follow up to discuss next steps or a brief consultation."
+        backdropImage="https://images.unsplash.com/photo-1482192505345-5655af888cc4?auto=format&fit=crop&w=1800&q=70"
       />
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-8 rounded-lg border border-lux-warning/40 bg-lux-warning-bg px-5 py-4 text-sm leading-relaxed text-lux-warning">
           <strong>Important:</strong> This form is not for urgent or crisis
-          communication and is not monitored 24/7. If you are in danger or
-          experiencing a mental health emergency, call or text{" "}
-          <strong>988</strong>, or dial <strong>911</strong>.
+          communication. If you are in danger or experiencing a mental health
+          emergency, call or text <strong>988</strong>, or dial{" "}
+          <strong>911</strong>.
         </div>
 
         <div className="grid gap-10 lg:grid-cols-2">
@@ -61,25 +62,30 @@ export default function ContactPage() {
                     {practiceInfo.email}
                   </a>
                 </li>
-                <li className="flex gap-3">
-                  <Printer className="mt-0.5 shrink-0 text-lux-sage" size={20} />
-                  <span>Fax: {practiceInfo.fax}</span>
-                </li>
               </ul>
               <p className="mt-5 text-sm text-lux-ink-muted">
                 {practiceInfo.telehealthNote}
               </p>
             </div>
 
-            <div className="overflow-hidden rounded-lg border border-lux-border bg-lux-mist">
-              <div className="flex aspect-[16/10] flex-col items-center justify-center gap-2 px-6 text-center">
-                <MapPin className="text-lux-moss" size={28} />
-                <p className="font-semibold text-lux-moss-deep">Map placeholder</p>
-                <p className="max-w-sm text-sm text-lux-ink-muted">
-                  Google Maps embed can be added here with your final address.
-                  Visitors can also use the street address above for directions.
-                </p>
-              </div>
+            <div className="overflow-hidden rounded-lg border border-lux-border bg-lux-mist/40 p-8">
+              <p className="font-semibold text-lux-moss-deep">How we meet</p>
+              <p className="mt-2 text-sm text-lux-ink-muted">
+                {practiceInfo.virtualPrimaryNote}
+              </p>
+              <p className="mt-4 text-sm text-lux-ink-muted">
+                Office: {practiceInfo.address.line1}, {practiceInfo.address.line2}
+              </p>
+              <p className="mt-4 text-sm text-lux-ink-muted">
+                Prefer to call? Reach us at{" "}
+                <a
+                  href={`tel:${practiceInfo.phone.replace(/\D/g, "")}`}
+                  className="font-semibold text-lux-moss underline-offset-2 hover:underline"
+                >
+                  {practiceInfo.phone}
+                </a>
+                .
+              </p>
             </div>
           </div>
 

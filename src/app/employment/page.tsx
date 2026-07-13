@@ -6,90 +6,55 @@ import { PageHero } from "@/components/PageHero";
 export const metadata: Metadata = {
   title: "Employment",
   description:
-    "Join the Lux Therapy team. Learn about our group practice culture, clinician benefits, and current openings for licensed therapists.",
+    "Join the New Aviv team. Open roles for MSW, LCSW, LICSW, LMHC, and PMHNP/FNP clinicians who foster hope from a strengths-based perspective.",
 };
 
-const benefits = [
-  "Supportive clinical consultation and peer community",
-  "Flexible scheduling with hybrid and telehealth options",
-  "Competitive compensation and streamlined administrative support",
-  "Marketing and referral systems that help you build a caseload",
-  "A values-driven culture centered on inclusivity and work-life balance",
-];
-
-const openings = [
-  {
-    title: "Licensed Therapist (LCSW, LMFT, LPC, or PsyD)",
-    type: "Full-time or part-time · Portland / Hybrid",
-    summary:
-      "Seeking clinicians with strong clinical foundations and a collaborative spirit. Specialties in trauma, couples, or perinatal mental health are especially welcome.",
-  },
-  {
-    title: "Associate / Pre-licensed Clinician",
-    type: "Part-time · Supervised practice",
-    summary:
-      "Grow under supportive supervision while serving a diverse caseload. Ideal for associates seeking meaningful hours and mentorship in a group setting.",
-  },
-];
+const credentials = ["MSW", "LCSW", "LICSW", "LMHC", "PMHNP/FNP"];
 
 export default function EmploymentPage() {
   return (
     <>
       <PageHero
         eyebrow="Employment"
-        title="Grow with a practice that protects the work—and the worker"
-        description="Lux Therapy is expanding thoughtfully. We look for licensed clinicians who value excellence, humility, and the quiet courage it takes to sit with people in hard seasons."
+        title="Fostering hope from a strengths-based perspective"
+        description="Do you have a passion for helping others and instilling hope? Grow professionally with a team that approaches relationships with care and a growth mindset."
+        backdropImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1800&q=70"
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2">
+      <section className="bg-lux-paper">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-20">
           <div>
             <h2 className="font-display text-3xl text-lux-moss-deep">
-              Practice culture
+              Our approach
             </h2>
             <p className="mt-4 leading-relaxed text-lux-ink-muted">
-              We believe clinicians do their best work when they feel respected,
-              resourced, and not alone. Our group practice blends autonomy with
-              connection—space to practice in your authentic style, plus a team
-              ready to consult when cases are complex.
+              We develop hope in others by approaching relationships with a
+              positive, caring, and growth mindset. A helping hand may be all
+              that’s needed to continue a healthy journey.
             </p>
-            <ul className="mt-8 space-y-3">
-              {benefits.map((benefit) => (
-                <li key={benefit} className="flex gap-3 text-lux-ink-muted">
-                  <CheckCircle2
-                    className="mt-0.5 shrink-0 text-lux-sage"
-                    size={20}
-                  />
-                  <span>{benefit}</span>
-                </li>
-              ))}
-            </ul>
+
+            <div className="mt-10 rounded-2xl border border-lux-border bg-lux-foam p-6 sm:p-8">
+              <h3 className="font-display text-2xl text-lux-moss-deep">
+                Open roles
+              </h3>
+              <p className="mt-3 text-lux-ink-muted">
+                We currently welcome applications from clinicians with the
+                following credentials:
+              </p>
+              <ul className="mt-6 space-y-3">
+                {credentials.map((item) => (
+                  <li key={item} className="flex gap-3 text-lux-ink-muted">
+                    <CheckCircle2
+                      className="mt-0.5 shrink-0 text-lux-accent"
+                      size={20}
+                    />
+                    <span className="font-medium text-lux-ink">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <CareersForm />
-        </div>
-      </section>
-
-      <section className="border-t border-lux-border bg-white/70">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl text-lux-moss-deep">
-            Current openings
-          </h2>
-          <div className="mt-8 space-y-6">
-            {openings.map((job) => (
-              <article
-                key={job.title}
-                className="rounded-lg border border-lux-border bg-lux-paper p-6"
-              >
-                <h3 className="font-display text-2xl text-lux-moss-deep">
-                  {job.title}
-                </h3>
-                <p className="mt-1 text-sm font-medium text-lux-sage">{job.type}</p>
-                <p className="mt-3 leading-relaxed text-lux-ink-muted">
-                  {job.summary}
-                </p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
     </>
