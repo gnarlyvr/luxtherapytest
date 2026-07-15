@@ -38,15 +38,3 @@ export const practiceInfo = {
   virtualPrimaryNote:
     "Virtual care is our primary format. In-person appointments can be scheduled at our office in Somerville, Massachusetts.",
 };
-
-/** Paste each account URL below. Empty hrefs stay in the layout as inactive spots. */
-export const socialLinks = [
-  { platform: "instagram", label: "Instagram", href: "" },
-  { platform: "facebook", label: "Facebook", href: "" },
-  { platform: "linkedin", label: "LinkedIn", href: "" },
-  { platform: "youtube", label: "YouTube", href: "" },
-  { platform: "tiktok", label: "TikTok", href: "" },
-  { platform: "x", label: "X", href: "" },
-] as const;
-
-export type SocialPlatform = (typeof socialLinks)[number]["platform"];

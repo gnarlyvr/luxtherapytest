@@ -3,8 +3,11 @@ import { Logo } from "@/components/Logo";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { SocialLinks } from "@/components/SocialLinks";
 import { navLinks, practiceInfo } from "@/data/site";
+import { getActiveSocialLinks } from "@/lib/site-settings";
 
-export function Footer() {
+export async function Footer() {
+  const socialLinks = await getActiveSocialLinks();
+
   return (
     <footer className="relative mt-auto overflow-hidden border-t border-lux-border bg-lux-moss-deep text-lux-foam">
       <div className="relative border-b border-white/15">
@@ -33,12 +36,18 @@ export function Footer() {
             for in-person sessions.
           </p>
           <p className="mt-4 text-sm text-lux-mist">{practiceInfo.telehealthNote}</p>
-          <div className="mt-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white">
-              Follow us
-            </p>
-            <SocialLinks className="mt-3" variant="dark" />
-          </div>
+          {socialLinks.length > 0 ? (
+            <div className="mt-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white">
+                Follow us
+              </p>
+              <SocialLinks
+                links={socialLinks}
+                className="mt-3"
+                variant="dark"
+              />
+            </div>
+          ) : null}
         </div>
 
         <div>

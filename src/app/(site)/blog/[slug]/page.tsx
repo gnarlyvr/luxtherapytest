@@ -3,21 +3,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ButtonLink } from "@/components/ButtonLink";
-import { formatPostDate, getPostBySlug, blogPosts } from "@/data/blog";
+import {
+  formatPostDate,
+  getPublishedPostBySlug,
+  getPublishedPosts,
+} from "@/lib/blog";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
 };
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  try {
+    const posts = await getPublishedPosts();
+    return posts.map((post) => ({ slug: post.slug }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPublishedPostBySlug(slug);
   if (!post) return { title: "Article" };
   return {
     title: post.title,
@@ -27,7 +38,7 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPublishedPostBySlug(slug);
   if (!post) notFound();
 
   return (
@@ -39,13 +50,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               Blog
             </Link>
             <span className="mx-2">·</span>
-            {formatPostDate(post.date)}
+            {formatPostDate(post.publishedAt)}
           </p>
           <h1 className="mt-4 font-display text-4xl leading-tight text-lux-moss-deep sm:text-5xl">
             {post.title}
           </h1>
           <p className="mt-5 text-lux-ink-muted">
-            By {post.author}, {post.authorCredentials}
+            By {post.author}
+            {post.authorCredentials ? `, ${post.authorCredentials}` : ""}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {post.tags.map((tag) => (
@@ -60,23 +72,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </header>
 
-      <div className="mx-auto mt-8 max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
-          <Image
-            src={post.image}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="(max-width: 896px) 100vw, 896px"
-            priority
-          />
+      {post.image ? (
+        <div className="mx-auto mt-8 max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
+            <Image
+              src={post.image}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="(max-width: 896px) 100vw, 896px"
+              priority
+            />
+          </div>
         </div>
-      </div>
+      ) : null}
 
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="space-y-5 text-lg leading-relaxed text-lux-ink-muted">
-          {post.content.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+          {post.content.map((paragraph, index) => (
+            <p key={`${post.id}-${index}`}>{paragraph}</p>
           ))}
         </div>
 
@@ -85,8 +99,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             Ready to talk?
           </h2>
           <p className="mt-3 text-lux-ink-muted">
-            If this article resonated, Christopher and the New Aviv team are here
-            to help you take a next step toward hope and healing.
+            If this article resonated, the New Aviv team is here to help you
+            take a next step toward hope and healing.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <ButtonLink href="/contact">Schedule a Consultation</ButtonLink>

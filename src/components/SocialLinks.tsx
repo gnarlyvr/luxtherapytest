@@ -1,5 +1,5 @@
 import type { ComponentType, ReactNode, SVGProps } from "react";
-import { socialLinks, type SocialPlatform } from "@/data/site";
+import type { SocialLink, SocialPlatform } from "@/lib/site-settings";
 
 type IconProps = SVGProps<SVGSVGElement> & { size?: number };
 
@@ -80,18 +80,18 @@ const icons: Record<SocialPlatform, ComponentType<IconProps>> = {
 };
 
 type SocialLinksProps = {
+  links: SocialLink[];
   className?: string;
   variant?: "dark" | "light";
 };
 
 export function SocialLinks({
+  links,
   className = "",
   variant = "dark",
 }: SocialLinksProps) {
-  const idle =
-    variant === "dark"
-      ? "border-white/20 text-lux-mist"
-      : "border-lux-border text-lux-ink-muted";
+  if (links.length === 0) return null;
+
   const active =
     variant === "dark"
       ? "border-white/25 text-white hover:border-white/50 hover:bg-white/10"
@@ -99,34 +99,19 @@ export function SocialLinks({
 
   return (
     <ul className={`flex flex-wrap gap-2 ${className}`.trim()}>
-      {socialLinks.map((item) => {
+      {links.map((item) => {
         const Icon = icons[item.platform];
-        const hasHref = Boolean(item.href.trim());
-        const classes = `inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${
-          hasHref ? active : `${idle} opacity-50`
-        }`;
-
         return (
           <li key={item.platform}>
-            {hasHref ? (
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`New Aviv on ${item.label}`}
-                className={classes}
-              >
-                <Icon size={18} />
-              </a>
-            ) : (
-              <span
-                aria-label={`${item.label} link coming soon`}
-                title={`Add ${item.label} URL in site.ts`}
-                className={classes}
-              >
-                <Icon size={18} />
-              </span>
-            )}
+            <a
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`New Aviv on ${item.label}`}
+              className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${active}`}
+            >
+              <Icon size={18} />
+            </a>
           </li>
         );
       })}

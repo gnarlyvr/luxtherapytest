@@ -5,6 +5,7 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { PageHero } from "@/components/PageHero";
 import { SocialLinks } from "@/components/SocialLinks";
 import { practiceInfo } from "@/data/site";
+import { getActiveSocialLinks } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -12,7 +13,9 @@ export const metadata: Metadata = {
     "Contact New Aviv at (857) 284-8639 to schedule a consultation. Primarily virtual care, with in-person appointments at 240 Elm St, Somerville, Massachusetts.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const socialLinks = await getActiveSocialLinks();
+
   return (
     <>
       <PageHero
@@ -67,12 +70,18 @@ export default function ContactPage() {
               <p className="mt-5 text-sm text-lux-ink-muted">
                 {practiceInfo.telehealthNote}
               </p>
-              <div className="mt-6">
-                <p className="text-sm font-semibold text-lux-moss-deep">
-                  Follow us
-                </p>
-                <SocialLinks className="mt-3" variant="light" />
-              </div>
+              {socialLinks.length > 0 ? (
+                <div className="mt-6">
+                  <p className="text-sm font-semibold text-lux-moss-deep">
+                    Follow us
+                  </p>
+                  <SocialLinks
+                    links={socialLinks}
+                    className="mt-3"
+                    variant="light"
+                  />
+                </div>
+              ) : null}
             </div>
 
             <div className="overflow-hidden rounded-lg border border-lux-border bg-lux-mist/40 p-8">
