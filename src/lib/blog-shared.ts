@@ -18,11 +18,13 @@ export type BlogPost = {
 
 export function formatPostDate(date: string | null) {
   if (!date) return "Draft";
+  const parsed = new Date(date);
+  if (Number.isNaN(parsed.getTime())) return "Draft";
   return new Intl.DateTimeFormat("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
-  }).format(new Date(date));
+  }).format(parsed);
 }
 
 export function slugify(input: string) {

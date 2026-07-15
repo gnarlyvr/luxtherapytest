@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { CmsImage } from "@/components/CmsImage";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { PageHero } from "@/components/PageHero";
 import { formatPostDate, getPublishedPosts } from "@/lib/blog";
@@ -39,14 +39,11 @@ export default async function BlogPage() {
                 className="overflow-hidden rounded-2xl border border-lux-border bg-white shadow-sm transition-shadow hover:shadow-md"
               >
                 <Link href={`/blog/${post.slug}`} className="group block">
-                  <div className="relative aspect-[16/9] bg-lux-foam">
+                  <div className="aspect-[16/9] overflow-hidden bg-lux-foam">
                     {post.image ? (
-                      <Image
+                      <CmsImage
                         src={post.image}
-                        alt=""
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : null}
                   </div>

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ButtonLink } from "@/components/ButtonLink";
+import { CmsImage } from "@/components/CmsImage";
 import {
   formatPostDate,
   getPublishedPostBySlug,
@@ -74,13 +74,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {post.image ? (
         <div className="mx-auto mt-8 max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
-            <Image
+          <div className="aspect-[16/9] overflow-hidden rounded-2xl bg-lux-foam">
+            <CmsImage
               src={post.image}
-              alt=""
-              fill
-              className="object-cover"
-              sizes="(max-width: 896px) 100vw, 896px"
+              className="h-full w-full object-cover"
               priority
             />
           </div>
