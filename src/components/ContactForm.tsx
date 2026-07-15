@@ -1,6 +1,10 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import {
+  getContactFormspreeEndpoint,
+  submitToFormspree,
+} from "@/lib/formspree";
 
 const careTypes = [
   "Individual Therapy",
@@ -19,10 +23,31 @@ const appointmentFormats = [
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    setPending(true);
+    setError(null);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.set("_subject", "New Aviv – Contact / schedule inquiry");
+
+    try {
+      const endpoint = getContactFormspreeEndpoint();
+      const result = await submitToFormspree(endpoint, formData);
+      if (!result.ok) {
+        setError(result.message);
+        setPending(false);
+        return;
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to send right now.");
+      setPending(false);
+    }
   }
 
   if (submitted) {
@@ -171,11 +196,18 @@ export function ContactForm() {
         privacy practices for how we handle inquiry information.
       </p>
 
+      {error ? (
+        <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">
+          {error}
+        </p>
+      ) : null}
+
       <button
         type="submit"
-        className="w-full rounded-md bg-lux-accent px-5 py-3 text-sm font-semibold text-lux-paper transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-accent-hover hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lux-moss sm:w-auto"
+        disabled={pending}
+        className="w-full rounded-md bg-lux-accent px-5 py-3 text-sm font-semibold text-lux-paper transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-accent-hover hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lux-moss disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none sm:w-auto"
       >
-        Send message
+        {pending ? "Sending…" : "Send message"}
       </button>
     </form>
   );
