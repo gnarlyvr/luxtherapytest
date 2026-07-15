@@ -6,6 +6,7 @@ import {
   deleteTherapist,
   updateTherapist,
 } from "@/app/admin/actions";
+import { TherapistPhotoField } from "@/components/admin/TherapistPhotoField";
 import { contentToParagraphs } from "@/lib/blog-shared";
 import type { Therapist } from "@/lib/therapist-shared";
 
@@ -86,16 +87,15 @@ export function TherapistForm({ therapist, notice, error }: TherapistFormProps) 
         </label>
       </div>
 
-      <label className={labelClass}>
-        Photo URL
-        <input
-          name="image"
-          type="text"
-          defaultValue={therapist?.image ?? ""}
-          placeholder="https://..."
-          className={fieldClass}
-        />
-      </label>
+      <div>
+        <p className={labelClass}>Photo</p>
+        <div className="mt-2">
+          <TherapistPhotoField
+            initialUrl={therapist?.image ?? ""}
+            therapistId={therapist?.id}
+          />
+        </div>
+      </div>
 
       <label className={labelClass}>
         Short statement
