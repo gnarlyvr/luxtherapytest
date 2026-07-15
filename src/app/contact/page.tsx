@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { PageHero } from "@/components/PageHero";
+import { SocialLinks } from "@/components/SocialLinks";
 import { practiceInfo } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -66,6 +67,12 @@ export default function ContactPage() {
               <p className="mt-5 text-sm text-lux-ink-muted">
                 {practiceInfo.telehealthNote}
               </p>
+              <div className="mt-6">
+                <p className="text-sm font-semibold text-lux-moss-deep">
+                  Follow us
+                </p>
+                <SocialLinks className="mt-3" variant="light" />
+              </div>
             </div>
 
             <div className="overflow-hidden rounded-lg border border-lux-border bg-lux-mist/40 p-8">

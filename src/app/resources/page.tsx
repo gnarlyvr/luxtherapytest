@@ -52,7 +52,7 @@ const hotlines = [
     detail: "1-800-622-2255",
   },
   {
-    name: "National Crisis Line – Anorexia and Bulimia",
+    name: "National Crisis Line - Anorexia and Bulimia",
     detail: "1-800-233-4357",
   },
   {
@@ -106,7 +106,7 @@ export default function ResourcesPage() {
             Stay connected with New Aviv
           </h2>
           <p className="mt-4 max-w-xl text-lux-mist">
-            Occasional insights on healing, relationships, and finding hope—never
+            Occasional insights on healing, relationships, and finding hope - never
             spam, always easy to unsubscribe.
           </p>
           <div className="mt-8">

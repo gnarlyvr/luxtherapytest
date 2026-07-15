@@ -6,7 +6,7 @@ type PageHeroProps = {
   title: string;
   description: string;
   eyebrow?: string;
-  /** Soft faded hero background — unique per page */
+  /** Soft faded hero background - unique per page */
   backdropImage: string;
   backdropAlt?: string;
 };

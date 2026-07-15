@@ -1,18 +1,18 @@
 # New Aviv Website
 
-Revised marketing site for [New Aviv](https://www.newaviv.com/), a counseling practice offering hope, care, and healing for young adults, couples, and families—primarily through virtual appointments, with in-person care at 240 Elm St, Floor 2, Somerville, Massachusetts.
+Revised marketing site for [New Aviv](https://www.newaviv.com/), a counseling practice offering hope, care, and healing for young adults, couples, and families - primarily through virtual appointments, with in-person care at 240 Elm St, Floor 2, Somerville, Massachusetts.
 
 Built with **Next.js**, **React**, **Tailwind CSS**, and **Lucide** icons. Branding and copy are adapted from newaviv.com.
 
 ## Pages
 
-- `/` — Home
-- `/about` — About New Aviv
-- `/services` — Individual, couples, family, teen, and group counseling
-- `/therapists` — Clinician directory with filters
-- `/employment` — Open roles (MSW, LCSW, LICSW, LMHC, PMHNP/FNP)
-- `/resources` — Crisis and community hotlines
-- `/contact` — Inquiry form + FAQ
+- `/` - Home
+- `/about` - About New Aviv
+- `/services` - Individual, couples, family, teen, and group counseling
+- `/therapists` - Clinician directory with filters
+- `/employment` - Open roles (MSW, LCSW, LICSW, LMHC, PMHNP/FNP)
+- `/resources` - Crisis and community hotlines
+- `/contact` - Inquiry form + FAQ
 
 ## Getting started
 

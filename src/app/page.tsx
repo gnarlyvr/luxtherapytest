@@ -23,18 +23,22 @@ export default function HomePage() {
             />
           </div>
           <h1 className="animate-fade-up mt-6 max-w-2xl font-display text-3xl leading-tight text-white sm:text-4xl md:text-[2.75rem]">
-            Hope. Care. Healing.
+            Hope Care Healing
           </h1>
           <p className="animate-fade-up-delay mt-5 max-w-xl text-lg leading-relaxed text-white/90">
-            Compassionate counseling for young adults, couples, and families—
-            primarily virtual, with in-person sessions available at our Somerville,
+            Compassionate evidence based counseling for young adults, couples, and
+            families. Virtual and in-person sessions available at our Somerville,
             Massachusetts office.
           </p>
           <div className="animate-fade-up-delay-2 mt-8 flex flex-wrap gap-3">
-            <ButtonLink href="/contact" className="bg-white text-lux-moss-deep hover:bg-lux-foam">
+            <ButtonLink
+              href="/contact"
+              variant="primary"
+              className="px-6 py-3.5 text-base shadow-lg ring-2 ring-white/50"
+            >
               Schedule a Consultation
             </ButtonLink>
-            <ButtonLink href="/services" variant="secondary">
+            <ButtonLink href="/services" variant="onDark">
               Explore Services
             </ButtonLink>
           </div>
@@ -49,7 +53,7 @@ export default function HomePage() {
               “{practiceInfo.quote}”
             </p>
             <footer className="mt-3 text-sm font-medium text-lux-ink-muted">
-              — {practiceInfo.quoteAttribution}
+ - {practiceInfo.quoteAttribution}
             </footer>
           </blockquote>
           <div className="relative aspect-[5/4] overflow-hidden rounded-2xl shadow-sm">
@@ -90,7 +94,7 @@ export default function HomePage() {
               {
                 icon: Users,
                 title: "Care",
-                text: "Our clinicians specialize in individual, family, couples, and marriage counseling—meeting you with empathy and collaboration.",
+                text: "Our clinicians specialize in individual, family, couples, and marriage counseling - meeting you with empathy and collaboration.",
               },
               {
                 icon: Leaf,
@@ -127,7 +131,7 @@ export default function HomePage() {
                 Meet our Therapists
               </p>
               <p className="mt-2 max-w-md font-display text-3xl">
-                Over 20 years of combined experience, ready to meet you where you are
+                Over 50 years now with the composed team, ready to meet you where you are
               </p>
               <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold transition-transform duration-200 group-hover:translate-x-1">
                 View clinicians <ArrowRight size={16} />

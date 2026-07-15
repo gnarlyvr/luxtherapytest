@@ -24,7 +24,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Our Services"
         title="Clinical care shaped around how you live and heal"
-        description="From one-on-one therapy to couples, family, and group support—primarily through secure virtual appointments, with in-person sessions available at our Massachusetts office."
+        description="From one-on-one therapy to couples, family, and group support - primarily through secure virtual appointments, with in-person sessions available at our Massachusetts office."
         backdropImage="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1800&q=70"
       />
 

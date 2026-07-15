@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "ghost" | "inverse" | "onDark";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
@@ -9,6 +9,10 @@ const variants: Record<ButtonVariant, string> = {
     "bg-white/90 text-lux-moss-deep border border-lux-border hover:bg-lux-foam hover:border-lux-sage",
   ghost:
     "bg-transparent text-lux-moss underline-offset-4 hover:underline hover:text-lux-moss-deep",
+  inverse:
+    "bg-white text-lux-moss-deep shadow-sm hover:bg-lux-foam hover:-translate-y-0.5 hover:shadow-md",
+  onDark:
+    "border border-white/70 bg-white/10 text-white shadow-none backdrop-blur-sm hover:bg-white/20 hover:-translate-y-0.5",
 };
 
 type ButtonProps = {

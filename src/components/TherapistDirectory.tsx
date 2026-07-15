@@ -131,7 +131,7 @@ export function TherapistDirectory() {
 
       {filtered.length === 0 && (
         <p className="mt-8 rounded-lg border border-dashed border-lux-border bg-lux-foam/50 p-8 text-center text-lux-ink-muted">
-          No clinicians match those filters. Try another specialty or format—or{" "}
+          No clinicians match those filters. Try another specialty or format - or{" "}
           <a href="/contact" className="font-semibold text-lux-moss underline-offset-2 hover:underline">
             reach out
           </a>{" "}

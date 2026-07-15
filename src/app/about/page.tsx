@@ -7,7 +7,7 @@ import { practiceInfo } from "@/data/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about New Aviv—hope, care, and healing for young adults, couples, and families, primarily through virtual care, with in-person sessions at our Somerville office.",
+    "Learn about New Aviv - hope, care, and healing for young adults, couples, and families, primarily through virtual care, with in-person sessions at our Somerville office.",
 };
 
 const values = [
@@ -17,11 +17,11 @@ const values = [
   },
   {
     title: "Care",
-    text: "We approach relationships with a positive, caring, and growth mindset—tailoring sessions so you feel accepted and supported.",
+    text: "We approach relationships with a positive, caring, and growth mindset - tailoring sessions so you feel accepted and supported.",
   },
   {
     title: "Healing",
-    text: "Most care is virtual, with in-person options at our Massachusetts office—so you can heal in a format that feels safe and workable.",
+    text: "Most care is virtual, with in-person options at our Massachusetts office - so you can heal in a format that feels safe and workable.",
   },
 ];
 
@@ -34,6 +34,19 @@ export default function AboutPage() {
         description="Hope. Care. Healing. We collaborate with you to identify your goals in a safe, comfortable space."
         backdropImage="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=70"
       />
+
+      <section className="border-b border-lux-border bg-lux-foam/70">
+        <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 lg:px-8 lg:py-16">
+          <h2 className="font-display text-3xl text-lux-moss-deep sm:text-4xl">
+            {practiceInfo.nameMeaning.title}
+          </h2>
+          <div className="mt-6 space-y-4 text-lg leading-relaxed text-lux-ink-muted">
+            {practiceInfo.nameMeaning.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="relative mx-auto grid max-w-6xl gap-12 overflow-hidden px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24">
         <div className="prose-lux text-lg leading-relaxed text-lux-ink-muted">
@@ -52,7 +65,7 @@ export default function AboutPage() {
           <blockquote className="mt-8 border-l-4 border-lux-sage pl-5 font-display text-xl text-lux-moss-deep">
             “{practiceInfo.quote}”
             <footer className="mt-2 font-sans text-sm font-medium text-lux-ink-muted">
-              — {practiceInfo.quoteAttribution}
+              - {practiceInfo.quoteAttribution}
             </footer>
           </blockquote>
         </div>

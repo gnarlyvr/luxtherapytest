@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | New Aviv",
   },
   description:
-    "New Aviv offers compassionate counseling for young adults, couples, and families—primarily virtual, with in-person appointments available at our Somerville, Massachusetts office.",
+    "New Aviv offers compassionate counseling for young adults, couples, and families - primarily virtual, with in-person appointments available at our Somerville, Massachusetts office.",
   openGraph: {
     title: "New Aviv",
     description: practiceInfo.quote,

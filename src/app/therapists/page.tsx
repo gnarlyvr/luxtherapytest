@@ -6,7 +6,7 @@ import { TherapistDirectory } from "@/components/TherapistDirectory";
 export const metadata: Metadata = {
   title: "Meet our Therapists",
   description:
-    "Meet the New Aviv clinicians. With over 20 years of combined experience, our therapists are ready to address challenges the way you want to address them.",
+    "Meet the New Aviv clinicians. With over 50 years now with the composed team, our therapists are ready to address challenges the way you want to address them.",
 };
 
 export default function TherapistsPage() {
@@ -15,7 +15,7 @@ export default function TherapistsPage() {
       <PageHero
         eyebrow="Meet our Therapists"
         title="Thoughtful clinicians. Real human connection."
-        description="With over 20 years of combined experience, our therapists are ready to address challenges the way you want to address them. Most sessions are virtual; in-person care is available at our Massachusetts office."
+        description="With over 50 years now with the composed team, our therapists are ready to address challenges the way you want to address them. Most sessions are virtual; in-person care is available at our Massachusetts office."
         backdropImage="https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1800&q=70"
       />
 
@@ -27,7 +27,7 @@ export default function TherapistsPage() {
           </h2>
           <p className="mt-3 max-w-2xl text-lux-ink-muted">
             Tell us a little about what you&apos;re looking for and we&apos;ll
-            help match you with a clinician—or recommend next steps if we
+            help match you with a clinician - or recommend next steps if we
             aren&apos;t the right fit.
           </p>
           <div className="mt-6">

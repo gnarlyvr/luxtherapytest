@@ -11,7 +11,7 @@ export const services: Service[] = [
     id: "individual",
     title: "Individual Therapy",
     summary:
-      "You don’t have to suffer alone in silence. Finding time to develop yourself will often help all aspects of your life. Hope and happiness are achievable—together, we will develop goals and skills to feel the way you want to feel.",
+      "You don’t have to suffer alone in silence. Finding time to develop yourself will often help all aspects of your life. Hope and happiness are achievable - together, we will develop goals and skills to feel the way you want to feel.",
     details: [
       "Anxiety or depression",
       "Relationship issues and feeling overwhelmed",
@@ -66,8 +66,8 @@ export const services: Service[] = [
     summary:
       "Groups offer a unique opportunity to learn from peers and practice therapeutic life skills together. Expressing yourself and hearing others’ understanding is validating.",
     details: [
-      "DBT Skills Group for Young Adults — learning and practicing DBT skills in depth",
-      "Man to Man for Adult Men — discussion about the demands on men and how we handle them",
+      "DBT Skills Group for Young Adults - learning and practicing DBT skills in depth",
+      "Man to Man for Adult Men - discussion about the demands on men and how we handle them",
       "Peer support alongside clinical facilitation",
       "Skills you can take into everyday life",
     ],

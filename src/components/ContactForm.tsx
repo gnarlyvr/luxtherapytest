@@ -33,7 +33,7 @@ export function ContactForm() {
       >
         <h3 className="font-display text-2xl text-lux-moss-deep">Thank you</h3>
         <p className="mt-3 text-lux-ink-muted">
-          We received your message and will respond within 1–2 business days.
+          We received your message and will respond within 1-2 business days.
           If this is urgent, please call our office or use the crisis resources
           listed on this page.
         </p>
