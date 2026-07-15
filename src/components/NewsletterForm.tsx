@@ -9,11 +9,40 @@ type NewsletterFormProps = {
 
 export function NewsletterForm({ variant = "onDark" }: NewsletterFormProps) {
   const [done, setDone] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const inputId = useId();
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setDone(true);
+    setPending(true);
+    setError(null);
+
+    const form = event.currentTarget;
+    const email = String(new FormData(form).get("email") ?? "").trim();
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = (await response.json().catch(() => null)) as {
+        ok?: boolean;
+        error?: string;
+      } | null;
+
+      if (!response.ok || !data?.ok) {
+        setError(data?.error || "Unable to subscribe right now.");
+        setPending(false);
+        return;
+      }
+
+      setDone(true);
+    } catch {
+      setError("Unable to subscribe right now. Please try again.");
+      setPending(false);
+    }
   }
 
   if (done) {
@@ -24,7 +53,8 @@ export function NewsletterForm({ variant = "onDark" }: NewsletterFormProps) {
         }`}
         role="status"
       >
-        You&apos;re on the list. Look for calm, practical insights in your inbox soon.
+        You&apos;re on the list. Look for calm, practical insights in your inbox
+        soon.
       </p>
     );
   }
@@ -36,29 +66,40 @@ export function NewsletterForm({ variant = "onDark" }: NewsletterFormProps) {
 
   const buttonClass =
     variant === "onDark"
-      ? "rounded-md bg-white px-5 py-3 text-sm font-semibold text-lux-moss-deep transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-foam"
-      : "rounded-md bg-lux-accent px-5 py-3 text-sm font-semibold text-lux-paper transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-accent-hover";
+      ? "rounded-md bg-white px-5 py-3 text-sm font-semibold text-lux-moss-deep transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-foam disabled:opacity-60"
+      : "rounded-md bg-lux-accent px-5 py-3 text-sm font-semibold text-lux-paper transition-all duration-200 hover:-translate-y-0.5 hover:bg-lux-accent-hover disabled:opacity-60";
+
+  const errorClass =
+    variant === "onDark" ? "text-sm text-red-200" : "text-sm text-red-700";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 sm:flex-row"
+      className="flex w-full flex-col gap-3"
       aria-label="Newsletter signup"
     >
-      <label htmlFor={inputId} className="sr-only">
-        Email address
-      </label>
-      <input
-        id={inputId}
-        name="email"
-        type="email"
-        required
-        placeholder="you@example.com"
-        className={inputClass}
-      />
-      <button type="submit" className={buttonClass}>
-        Subscribe
-      </button>
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <label htmlFor={inputId} className="sr-only">
+          Email address
+        </label>
+        <input
+          id={inputId}
+          name="email"
+          type="email"
+          required
+          placeholder="you@example.com"
+          disabled={pending}
+          className={inputClass}
+        />
+        <button type="submit" disabled={pending} className={buttonClass}>
+          {pending ? "Subscribing…" : "Subscribe"}
+        </button>
+      </div>
+      {error ? (
+        <p className={errorClass} role="alert">
+          {error}
+        </p>
+      ) : null}
     </form>
   );
 }
