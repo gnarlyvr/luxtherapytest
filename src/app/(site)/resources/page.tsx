@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Phone } from "lucide-react";
-import { NewsletterForm } from "@/components/NewsletterForm";
 import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
@@ -97,21 +96,6 @@ export default function ResourcesPage() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      <section className="bg-lux-moss-deep">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl text-white sm:text-4xl">
-            Stay connected with New Aviv
-          </h2>
-          <p className="mt-4 max-w-xl text-lux-mist">
-            Occasional insights on healing, relationships, and finding hope - never
-            spam, always easy to unsubscribe.
-          </p>
-          <div className="mt-8">
-            <NewsletterForm />
-          </div>
         </div>
       </section>
     </>

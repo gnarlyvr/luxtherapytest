@@ -14,11 +14,11 @@ export async function Footer() {
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
           <div className="max-w-xl">
             <h2 className="font-display text-2xl text-white sm:text-3xl">
-              Subscribe to our newsletter
+              Get mental health insights in your inbox
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-lux-mist">
-              Get occasional mental health insights on hope, relationships, and
-              healing - never spam, always easy to unsubscribe.
+              Occasional notes on coping, relationships, and finding hope - never
+              spam, always easy to unsubscribe.
             </p>
           </div>
           <div className="w-full lg:max-w-md">

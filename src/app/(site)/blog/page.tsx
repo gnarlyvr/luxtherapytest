@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CmsImage } from "@/components/CmsImage";
-import { NewsletterForm } from "@/components/NewsletterForm";
 import { PageHero } from "@/components/PageHero";
 import { formatPostDate, getPublishedPosts } from "@/lib/blog";
 
@@ -69,21 +68,6 @@ export default async function BlogPage() {
             ))}
           </div>
         )}
-      </section>
-
-      <section className="bg-lux-moss-deep">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl text-white sm:text-4xl">
-            Get mental health insights in your inbox
-          </h2>
-          <p className="mt-4 max-w-xl text-lux-mist">
-            Occasional notes on coping, relationships, and finding hope - never
-            spam, always easy to unsubscribe.
-          </p>
-          <div className="mt-8">
-            <NewsletterForm />
-          </div>
-        </div>
       </section>
     </>
   );
