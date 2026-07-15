@@ -55,10 +55,37 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <h1 className="mt-4 font-display text-4xl leading-tight text-lux-moss-deep sm:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-5 text-lux-ink-muted">
-            By {post.author}
-            {post.authorCredentials ? `, ${post.authorCredentials}` : ""}
-          </p>
+          {post.authorProfile ? (
+            <div className="mt-6 flex items-center gap-4">
+              {post.authorProfile.image ? (
+                <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full bg-lux-foam">
+                  <CmsImage
+                    src={post.authorProfile.image}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ) : null}
+              <div>
+                <p className="font-medium text-lux-moss-deep">
+                  {post.authorProfile.name}
+                  {post.authorProfile.credentials
+                    ? `, ${post.authorProfile.credentials}`
+                    : ""}
+                </p>
+                {post.authorProfile.role ? (
+                  <p className="text-sm text-lux-ink-muted">
+                    {post.authorProfile.role}
+                  </p>
+                ) : null}
+              </div>
+            </div>
+          ) : post.author ? (
+            <p className="mt-5 text-lux-ink-muted">
+              By {post.author}
+              {post.authorCredentials ? `, ${post.authorCredentials}` : ""}
+            </p>
+          ) : null}
           <div className="mt-4 flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <span

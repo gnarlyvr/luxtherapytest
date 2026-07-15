@@ -8,6 +8,7 @@ export type BlogPost = {
   content: string[];
   author: string;
   authorCredentials: string;
+  authorId: string | null;
   tags: string[];
   image: string;
   status: BlogPostStatus;

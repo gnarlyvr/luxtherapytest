@@ -1,4 +1,5 @@
 import type { BlogPost, BlogPostStatus } from "@/lib/blog-shared";
+import type { BlogAuthor } from "@/lib/therapist-shared";
 import { createPublicClient } from "@/lib/supabase/public";
 import { createClient } from "@/lib/supabase/server";
 
@@ -10,6 +11,18 @@ export {
   slugify,
 } from "@/lib/blog-shared";
 
+export type BlogPostWithAuthor = BlogPost & {
+  authorProfile: BlogAuthor | null;
+};
+
+type TherapistRow = {
+  id: string;
+  name: string;
+  credentials: string;
+  image: string;
+  role: string;
+};
+
 type BlogPostRow = {
   id: string;
   slug: string;
@@ -18,6 +31,7 @@ type BlogPostRow = {
   content: string[] | null | string;
   author: string;
   author_credentials: string;
+  author_id?: string | null;
   tags: string[] | null | string;
   image: string;
   status: BlogPostStatus;
@@ -39,26 +53,84 @@ function asStringArray(value: string[] | string | null | undefined): string[] {
   return [];
 }
 
-function mapRow(row: BlogPostRow): BlogPost {
+async function loadAuthorsById(
+  supabase: ReturnType<typeof createPublicClient>,
+  authorIds: string[],
+): Promise<Map<string, BlogAuthor>> {
+  const unique = Array.from(new Set(authorIds.filter(Boolean)));
+  const map = new Map<string, BlogAuthor>();
+  if (unique.length === 0) return map;
+
+  const { data, error } = await supabase
+    .from("therapists")
+    .select("id, name, credentials, image, role")
+    .in("id", unique);
+
+  if (error) {
+    console.error("Failed to load blog authors:", error.message);
+    return map;
+  }
+
+  for (const row of (data as TherapistRow[]) ?? []) {
+    map.set(row.id, {
+      id: row.id,
+      name: row.name,
+      credentials: row.credentials ?? "",
+      image: row.image ?? "",
+      role: row.role ?? "",
+    });
+  }
+  return map;
+}
+
+function mapRow(
+  row: BlogPostRow,
+  authors: Map<string, BlogAuthor>,
+): BlogPostWithAuthor {
+  const authorProfile =
+    (row.author_id ? authors.get(row.author_id) : null) ??
+    (row.author
+      ? {
+          id: row.author_id ?? "",
+          name: row.author,
+          credentials: row.author_credentials ?? "",
+          image: "",
+          role: "",
+        }
+      : null);
+
   return {
     id: row.id,
     slug: row.slug,
     title: row.title,
     excerpt: row.excerpt ?? "",
     content: asStringArray(row.content),
-    author: row.author ?? "",
-    authorCredentials: row.author_credentials ?? "",
+    author: authorProfile?.name ?? row.author ?? "",
+    authorCredentials:
+      authorProfile?.credentials ?? row.author_credentials ?? "",
+    authorId: row.author_id ?? null,
     tags: asStringArray(row.tags),
     image: row.image ?? "",
     status: row.status,
     publishedAt: row.published_at,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
+    authorProfile,
   };
 }
 
-/** Public site reads — cookie-free so ISR/static works in production. */
-export async function getPublishedPosts(): Promise<BlogPost[]> {
+async function withAuthors(
+  supabase: ReturnType<typeof createPublicClient>,
+  rows: BlogPostRow[],
+): Promise<BlogPostWithAuthor[]> {
+  const authors = await loadAuthorsById(
+    supabase,
+    rows.map((row) => row.author_id ?? ""),
+  );
+  return rows.map((row) => mapRow(row, authors));
+}
+
+export async function getPublishedPosts(): Promise<BlogPostWithAuthor[]> {
   const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("blog_posts")
@@ -67,12 +139,12 @@ export async function getPublishedPosts(): Promise<BlogPost[]> {
     .order("published_at", { ascending: false });
 
   if (error) throw new Error(error.message);
-  return ((data as BlogPostRow[]) ?? []).map(mapRow);
+  return withAuthors(supabase, (data as BlogPostRow[]) ?? []);
 }
 
 export async function getPublishedPostBySlug(
   slug: string,
-): Promise<BlogPost | null> {
+): Promise<BlogPostWithAuthor | null> {
   const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("blog_posts")
@@ -82,11 +154,12 @@ export async function getPublishedPostBySlug(
     .maybeSingle();
 
   if (error) throw new Error(error.message);
-  return data ? mapRow(data as BlogPostRow) : null;
+  if (!data) return null;
+  const [post] = await withAuthors(supabase, [data as BlogPostRow]);
+  return post;
 }
 
-/** Admin reads — require authenticated cookie session. */
-export async function getAllPostsForAdmin(): Promise<BlogPost[]> {
+export async function getAllPostsForAdmin(): Promise<BlogPostWithAuthor[]> {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("blog_posts")
@@ -94,12 +167,12 @@ export async function getAllPostsForAdmin(): Promise<BlogPost[]> {
     .order("updated_at", { ascending: false });
 
   if (error) throw new Error(error.message);
-  return ((data as BlogPostRow[]) ?? []).map(mapRow);
+  return withAuthors(supabase, (data as BlogPostRow[]) ?? []);
 }
 
 export async function getPostByIdForAdmin(
   id: string,
-): Promise<BlogPost | null> {
+): Promise<BlogPostWithAuthor | null> {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("blog_posts")
@@ -108,5 +181,7 @@ export async function getPostByIdForAdmin(
     .maybeSingle();
 
   if (error) throw new Error(error.message);
-  return data ? mapRow(data as BlogPostRow) : null;
+  if (!data) return null;
+  const [post] = await withAuthors(supabase, [data as BlogPostRow]);
+  return post;
 }

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { BlogPostForm } from "@/components/admin/BlogPostForm";
 import { getPostByIdForAdmin } from "@/lib/blog";
+import { getTherapistsForAuthorSelect } from "@/lib/therapists";
 
 export const metadata = {
   title: "Edit post",
@@ -17,7 +18,10 @@ export default async function EditBlogPostPage({
 }: EditPostPageProps) {
   const { id } = await params;
   const { saved, error } = await searchParams;
-  const post = await getPostByIdForAdmin(id);
+  const [post, therapists] = await Promise.all([
+    getPostByIdForAdmin(id),
+    getTherapistsForAuthorSelect(),
+  ]);
   if (!post) notFound();
 
   return (
@@ -29,6 +33,7 @@ export default async function EditBlogPostPage({
       <div className="mt-6">
         <BlogPostForm
           post={post}
+          therapists={therapists}
           notice={saved ? "Saved." : null}
           error={error ?? null}
         />

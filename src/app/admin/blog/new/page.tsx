@@ -1,4 +1,5 @@
 import { BlogPostForm } from "@/components/admin/BlogPostForm";
+import { getTherapistsForAuthorSelect } from "@/lib/therapists";
 
 export const metadata = {
   title: "New post",
@@ -10,6 +11,7 @@ type NewPostPageProps = {
 
 export default async function NewBlogPostPage({ searchParams }: NewPostPageProps) {
   const { error } = await searchParams;
+  const therapists = await getTherapistsForAuthorSelect();
 
   return (
     <div>
@@ -18,7 +20,7 @@ export default async function NewBlogPostPage({ searchParams }: NewPostPageProps
         Save as draft, or publish immediately to the public blog.
       </p>
       <div className="mt-6">
-        <BlogPostForm error={error ?? null} />
+        <BlogPostForm therapists={therapists} error={error ?? null} />
       </div>
     </div>
   );

@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
 import { TherapistDirectory } from "@/components/TherapistDirectory";
+import {
+  getActiveTherapists,
+  specialtiesFromTherapists,
+} from "@/lib/therapists";
 
 export const metadata: Metadata = {
   title: "Meet our Therapists",
@@ -9,7 +13,12 @@ export const metadata: Metadata = {
     "Meet the New Aviv clinicians. With over 50 years now with the composed team, our therapists are ready to address challenges the way you want to address them.",
 };
 
-export default function TherapistsPage() {
+export const revalidate = 60;
+
+export default async function TherapistsPage() {
+  const therapists = await getActiveTherapists();
+  const specialties = specialtiesFromTherapists(therapists);
+
   return (
     <>
       <PageHero
@@ -20,7 +29,10 @@ export default function TherapistsPage() {
       />
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-        <TherapistDirectory />
+        <TherapistDirectory
+          therapists={therapists}
+          specialties={specialties}
+        />
         <div className="mt-14 rounded-lg bg-lux-foam px-6 py-8 sm:px-8">
           <h2 className="font-display text-2xl text-lux-moss-deep">
             Not sure who to choose?

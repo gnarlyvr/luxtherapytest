@@ -1,31 +1,39 @@
 "use client";
 
-import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { useMemo, useState } from "react";
-import { allSpecialties, therapists, type Therapist } from "@/data/therapists";
+import { CmsImage } from "@/components/CmsImage";
+import type { Therapist } from "@/lib/therapist-shared";
 
 type FormatFilter = "All" | "In-person" | "Virtual";
+
+type TherapistDirectoryProps = {
+  therapists: Therapist[];
+  specialties: string[];
+};
 
 function TherapistCard({ therapist }: { therapist: Therapist }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
     <article className="animate-soft-rise overflow-hidden rounded-lg border border-lux-border bg-white">
-      <div className="relative aspect-[4/3] bg-lux-mist">
-        <Image
-          src={therapist.image}
-          alt={`Portrait of ${therapist.name}`}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
+      <div className="aspect-[4/3] overflow-hidden bg-lux-mist">
+        {therapist.image ? (
+          <CmsImage
+            src={therapist.image}
+            alt={`Portrait of ${therapist.name}`}
+            className="h-full w-full object-cover"
+          />
+        ) : null}
       </div>
       <div className="p-6">
         <h2 className="font-display text-2xl text-lux-moss-deep">
-          {therapist.name}, {therapist.credentials}
+          {therapist.name}
+          {therapist.credentials ? `, ${therapist.credentials}` : ""}
         </h2>
-        <p className="mt-1 text-sm font-medium text-lux-ink-muted">{therapist.role}</p>
+        <p className="mt-1 text-sm font-medium text-lux-ink-muted">
+          {therapist.role}
+        </p>
 
         {!expanded ? (
           <p className="mt-4 text-sm leading-relaxed text-lux-ink-muted">
@@ -33,8 +41,8 @@ function TherapistCard({ therapist }: { therapist: Therapist }) {
           </p>
         ) : (
           <div className="mt-4 space-y-3 text-sm leading-relaxed text-lux-ink-muted">
-            {therapist.bio.map((paragraph) => (
-              <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+            {therapist.bio.map((paragraph, index) => (
+              <p key={`${therapist.id}-bio-${index}`}>{paragraph}</p>
             ))}
           </div>
         )}
@@ -67,7 +75,10 @@ function TherapistCard({ therapist }: { therapist: Therapist }) {
   );
 }
 
-export function TherapistDirectory() {
+export function TherapistDirectory({
+  therapists,
+  specialties,
+}: TherapistDirectoryProps) {
   const [specialty, setSpecialty] = useState("All");
   const [format, setFormat] = useState<FormatFilter>("All");
 
@@ -79,7 +90,7 @@ export function TherapistDirectory() {
         format === "All" || therapist.formats.includes(format);
       return specialtyMatch && formatMatch;
     });
-  }, [specialty, format]);
+  }, [therapists, specialty, format]);
 
   return (
     <div>
@@ -95,7 +106,7 @@ export function TherapistDirectory() {
             className="mt-2 w-full rounded-md border border-lux-border bg-lux-paper px-3 py-2.5 text-lux-ink outline-none transition focus:border-lux-sage focus:ring-2 focus:ring-lux-mist"
           >
             <option value="All">All specialties</option>
-            {allSpecialties.map((item) => (
+            {specialties.map((item) => (
               <option key={item} value={item}>
                 {item}
               </option>

@@ -6,10 +6,12 @@ import {
   type BlogPost,
   type BlogPostStatus,
 } from "@/lib/blog-shared";
+import type { BlogAuthor } from "@/lib/therapist-shared";
 import { createBlogPost, deleteBlogPost, updateBlogPost } from "@/app/admin/actions";
 
 type BlogPostFormProps = {
   post?: BlogPost;
+  therapists: BlogAuthor[];
   notice?: string | null;
   error?: string | null;
 };
@@ -18,7 +20,12 @@ const fieldClass =
   "mt-1 w-full rounded-md border border-black/15 px-3 py-2 text-sm outline-none focus:border-black/40";
 const labelClass = "block text-sm font-medium";
 
-export function BlogPostForm({ post, notice, error }: BlogPostFormProps) {
+export function BlogPostForm({
+  post,
+  therapists,
+  notice,
+  error,
+}: BlogPostFormProps) {
   const action = post ? updateBlogPost : createBlogPost;
   const status: BlogPostStatus = post?.status ?? "draft";
 
@@ -67,25 +74,28 @@ export function BlogPostForm({ post, notice, error }: BlogPostFormProps) {
         />
       </label>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className={labelClass}>
-          Author
-          <input
-            name="author"
-            defaultValue={post?.author ?? ""}
-            className={fieldClass}
-          />
-        </label>
-        <label className={labelClass}>
-          Credentials
-          <input
-            name="authorCredentials"
-            defaultValue={post?.authorCredentials ?? ""}
-            placeholder="LICSW"
-            className={fieldClass}
-          />
-        </label>
-      </div>
+      <label className={labelClass}>
+        Author
+        <select
+          name="authorId"
+          required
+          defaultValue={post?.authorId ?? ""}
+          className={fieldClass}
+        >
+          <option value="" disabled>
+            Select a therapist
+          </option>
+          {therapists.map((therapist) => (
+            <option key={therapist.id} value={therapist.id}>
+              {therapist.name}
+              {therapist.credentials ? `, ${therapist.credentials}` : ""}
+            </option>
+          ))}
+        </select>
+        <span className="mt-1 block text-xs font-normal text-black/50">
+          Name and photo come from the Therapists admin list.
+        </span>
+      </label>
 
       <label className={labelClass}>
         Tags (comma-separated)
@@ -101,7 +111,7 @@ export function BlogPostForm({ post, notice, error }: BlogPostFormProps) {
         Image URL
         <input
           name="image"
-          type="url"
+          type="text"
           defaultValue={post?.image ?? ""}
           placeholder="https://..."
           className={fieldClass}

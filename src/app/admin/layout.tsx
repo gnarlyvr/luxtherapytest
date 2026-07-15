@@ -26,6 +26,9 @@ export default function AdminLayout({
               <Link href="/admin/blog" className="hover:text-black">
                 Blog
               </Link>
+              <Link href="/admin/therapists" className="hover:text-black">
+                Therapists
+              </Link>
               <Link href="/admin/settings" className="hover:text-black">
                 Site settings
               </Link>
