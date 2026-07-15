@@ -91,16 +91,21 @@ export function CareersForm() {
       </div>
       <div>
         <label htmlFor="resume" className="block text-sm font-semibold text-lux-ink">
-          Resume / CV
+          Resume / CV link
         </label>
         <input
           id="resume"
-          name="upload"
-          type="file"
-          accept=".pdf,.doc,.docx"
+          name="resume_link"
+          type="url"
+          inputMode="url"
           required
-          className="mt-2 block w-full text-sm text-lux-ink-muted file:mr-4 file:rounded-md file:border-0 file:bg-lux-foam file:px-4 file:py-2 file:text-sm file:font-semibold file:text-lux-moss-deep hover:file:bg-lux-mist"
+          placeholder="https:// (Google Drive, Dropbox, or similar)"
+          className="mt-2 w-full rounded-md border border-lux-border bg-lux-paper px-3 py-2.5 outline-none transition focus:border-lux-sage focus:ring-2 focus:ring-lux-mist"
         />
+        <p className="mt-2 text-xs text-lux-ink-muted">
+          Paste a shareable link to your resume. Make sure anyone with the link
+          can view it.
+        </p>
       </div>
       <div>
         <label htmlFor="note" className="block text-sm font-semibold text-lux-ink">
@@ -114,7 +119,7 @@ export function CareersForm() {
         />
       </div>
       <p className="text-xs text-lux-ink-muted">
-        Prefer email? Send materials to{" "}
+        Prefer to attach a file by email instead? Send materials to{" "}
         <a
           href={`mailto:${practiceInfo.careersEmail}`}
           className="font-semibold text-lux-moss underline-offset-2 hover:underline"
